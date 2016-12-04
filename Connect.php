@@ -10,16 +10,29 @@ class Connection
 
     public static function getConnection($host, $username,$password,$dbName)
     {
-        //perform connection
+        //mysqli connection.
         $mysqli=new mysqli($host,$username,$password,$dbName);
 
         //check if connection is successful
         if (mysqli_connect_errno())
         {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }else
+        {
+            echo "Successfully Connected <br>";
         }
 
-        echo "Successfully Connected <br>";
+        //PDO connection , check if it was successful.
+        try{
+            $PDO = new pdo( "mysql:host=$host;dbname=$dbName", $username, $password,
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            //Check if
+           // die(json_encode(array('outcome' => true)));
+        }
+        catch(PDOException $ex){
+            die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
+        }
+
         return $mysqli;
     }
 
@@ -85,7 +98,5 @@ $con=$test->getConnection("localhost","root","","students");
 $test ->printValues($con,"registration");
 $test ->InsertMultipleValues($con,"Sean","Carroll",23,5);
 $test ->DeleteValues($con,"registration","Sean");
-
-
 
 $con->close();
