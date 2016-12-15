@@ -94,9 +94,9 @@ class Connection
 }
 
 $test=new Connection();
-$con=$test->getConnection("localhost","root","","students");
+$con=$test->getConnection("localhost","root","root","students");
 $test ->printValues($con,"registration");
 $test ->InsertMultipleValues($con,"Sean","Carroll",23,5);
-$test ->DeleteValues($con,"registration","Sean");
+//$test ->DeleteValues($con,"registration","Sean");
 
 $con->close();
