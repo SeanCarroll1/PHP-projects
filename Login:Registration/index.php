@@ -5,7 +5,7 @@ include_once 'dbconnect.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home | Koding Made Simple</title>
+    <title>Test</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -20,7 +20,7 @@ include_once 'dbconnect.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Koding Made Simple</a>
+            <a class="navbar-brand" href="index.php">Login/Registration</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav navbar-nav navbar-right">
