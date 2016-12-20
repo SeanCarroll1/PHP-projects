@@ -26,19 +26,24 @@ if (isset($_POST['signup'])) {
         $error = true;
         $email_error = "Please Enter Valid Email ID";
     }
-    if(strlen($password) < 6) {
+
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number    = preg_match('@[0-9]@', $password);
+
+    if(strlen($password) < 6 || !$uppercase || !$lowercase || !$number ) {
         $error = true;
-        $password_error = "Password must be minimum of 6 characters";
+        $password_error = "Password must be minimum of 6 characters, contain at least one uppercase character and a number";
     }
     if($password != $cpassword) {
         $error = true;
-        $cpassword_error = "Password and Confirm Password doesn't match";
+        $cpassword_error = "Passwords do not match";
     }
     if (!$error) {
         if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
             $successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
         } else {
-            $errormsg = "Error in registering...Please try again later!";
+            $errormsg = "Error in registering...Please try again";
         }
     }
 }
